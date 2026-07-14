@@ -5,7 +5,7 @@
 
 const CONFIG = {
   // ★ここにGASのWebアプリURL(.../exec)を貼り付けてください
-  GAS_URL: 'https://script.google.com/macros/s/AKfycbx8g35-OaXFTJdLUAXhSEC574isNK66RAjrTFdw7TCMzi3bnEliecnSJHiILY0QBIOFyQ/exec',
+  GAS_URL: 'https://script.google.com/macros/s/XXXXXXXXXXXXXXXXXXXXXXXX/exec',
   SYNC_INTERVAL_MS: 700
 };
 
@@ -116,8 +116,15 @@ function joinRoom() {
 // ===================================================
 
 function setupCanvas() {
+  // ビットマップ解像度(DPRぶん高精細に)
   canvas.width = WORLD_W * DPR;
   canvas.height = WORLD_H * DPR;
+  // CSS上の表示サイズは必ずワールド座標(3000x2000)と一致させる。
+  // これを指定しないと、DPRが1より大きい端末(スマホ等)で
+  // canvasの実表示サイズがビットマップ解像度と同じ大きさになってしまい、
+  // タップ位置とワールド座標の変換(screenToWorld)がズレる原因になる。
+  canvas.style.width = WORLD_W + 'px';
+  canvas.style.height = WORLD_H + 'px';
   ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
   fillWhiteBackground();
 
