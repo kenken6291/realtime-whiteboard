@@ -5,7 +5,7 @@
 
 const CONFIG = {
   // ★ここにGASのWebアプリURL(.../exec)を貼り付けてください
-  GAS_URL: 'https://script.google.com/macros/s/XXXXXXXXXXXXXXXXXXXXXXXX/exec',
+  GAS_URL: 'https://script.google.com/macros/s/AKfycbx8g35-OaXFTJdLUAXhSEC574isNK66RAjrTFdw7TCMzi3bnEliecnSJHiILY0QBIOFyQ/exec',
   SYNC_INTERVAL_MS: 700
 };
 
