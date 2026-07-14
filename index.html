@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>リアルタイム・ホワイトボード</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ルーム参加画面 -->
+  <div id="joinScreen" class="join-screen">
+    <div class="join-card">
+      <h1>📝 リアルタイム・ホワイトボード</h1>
+      <p class="join-desc">ルームIDを入力して参加してください。<br>同じIDを共有した人と、描画がリアルタイムに同期されます。</p>
+      <input type="text" id="roomInput" placeholder="例: team-meeting-0714" maxlength="64" autocomplete="off">
+      <button id="joinBtn">ルームに入る</button>
+      <p class="join-hint">※ 存在しないルームIDでも自動的に新規作成されます</p>
+    </div>
+  </div>
+
+  <!-- ホワイトボード画面 -->
+  <div id="boardScreen" class="board-screen hidden">
+    <header class="toolbar">
+      <div class="toolbar-group">
+        <span class="room-label">ルーム: <strong id="roomNameLabel"></strong></span>
+        <button id="copyLinkBtn" title="ルームへの招待リンクをコピー">🔗 リンクコピー</button>
+      </div>
+
+      <div class="toolbar-group">
+        <label class="tool-label">色</label>
+        <input type="color" id="colorPicker" value="#1a1a1a">
+        <label class="tool-label">太さ</label>
+        <input type="range" id="widthPicker" min="1" max="30" value="4">
+        <span id="widthValue">4</span>
+      </div>
+
+      <div class="toolbar-group">
+        <button id="penBtn" class="tool-btn active">✏️ ペン</button>
+        <button id="eraserBtn" class="tool-btn">🧹 消しゴム</button>
+        <button id="clearBtn" class="tool-btn danger">🗑️ 全消去</button>
+      </div>
+
+      <div class="toolbar-group status-group">
+        <span id="statusDot" class="status-dot"></span>
+        <span id="statusText">接続中...</span>
+      </div>
+    </header>
+
+    <main class="canvas-wrap">
+      <canvas id="board"></canvas>
+    </main>
+  </div>
+
+<script src="main.js"></script>
+</body>
+</html>
