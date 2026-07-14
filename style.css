@@ -10,8 +10,9 @@
 
 * { box-sizing: border-box; }
 
-body {
+html, body {
   margin: 0;
+  height: 100%;
   font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
   background: var(--bg);
   color: var(--text);
@@ -83,6 +84,7 @@ body {
 /* ===== ボード画面 ===== */
 .board-screen {
   height: 100vh;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
 }
@@ -91,16 +93,18 @@ body {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 16px;
-  padding: 10px 16px;
+  gap: 10px 14px;
+  padding: 8px 12px;
   background: var(--panel);
   border-bottom: 1px solid var(--border);
+  overflow-x: auto;
 }
 
 .toolbar-group {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
+  flex-shrink: 0;
 }
 
 .room-label { font-size: 0.85rem; color: #555; }
@@ -118,6 +122,11 @@ button {
   border-radius: 8px;
   background: #fafaf7;
   font-size: 0.85rem;
+  white-space: nowrap;
+}
+.tool-btn.small {
+  padding: 6px 9px;
+  font-size: 0.8rem;
 }
 .tool-btn.active {
   background: var(--accent);
@@ -138,6 +147,7 @@ button {
   border: 1px solid var(--border);
   border-radius: 6px;
   background: #fafaf7;
+  white-space: nowrap;
 }
 
 #colorPicker {
@@ -149,8 +159,16 @@ button {
   background: none;
 }
 
-#widthPicker { width: 90px; }
+#widthPicker { width: 80px; }
 #widthValue { font-size: 0.8rem; color: #666; width: 20px; }
+
+.zoom-group { gap: 4px; }
+#zoomLevel {
+  font-size: 0.8rem;
+  color: #666;
+  width: 42px;
+  text-align: center;
+}
 
 .status-group { margin-left: auto; }
 .status-dot {
@@ -168,18 +186,29 @@ button {
   flex: 1;
   overflow: hidden;
   position: relative;
-  background: #fff;
+  background: #d8d8d0;
+  touch-action: none;
 }
 
 #board {
-  width: 100%;
-  height: 100%;
-  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: 0 0;
+  background: #ffffff;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.08), 0 4px 24px rgba(0,0,0,0.08);
   touch-action: none;
-  cursor: crosshair;
 }
 
+/* ツールごとのカーソル */
+.canvas-wrap.tool-pen #board { cursor: crosshair; }
+.canvas-wrap.tool-eraser #board { cursor: cell; }
+.canvas-wrap.tool-text #board { cursor: text; }
+.canvas-wrap.tool-pan #board { cursor: grab; }
+.canvas-wrap.tool-pan.panning #board { cursor: grabbing; }
+
 @media (max-width: 640px) {
-  .toolbar { gap: 10px; }
+  .toolbar { gap: 8px 10px; padding: 6px 8px; }
   .room-label { display: none; }
+  .tool-btn { padding: 7px 9px; font-size: 0.78rem; }
 }

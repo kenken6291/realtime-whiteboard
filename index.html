@@ -24,20 +24,33 @@
     <header class="toolbar">
       <div class="toolbar-group">
         <span class="room-label">ルーム: <strong id="roomNameLabel"></strong></span>
-        <button id="copyLinkBtn" title="ルームへの招待リンクをコピー">🔗 リンクコピー</button>
+        <button id="copyLinkBtn" title="ルームへの招待リンクをコピー">🔗 リンク</button>
+      </div>
+
+      <div class="toolbar-group">
+        <button id="penBtn" class="tool-btn active" title="ペン">✏️ ペン</button>
+        <button id="eraserBtn" class="tool-btn" title="消しゴム">🧹 消しゴム</button>
+        <button id="textBtn" class="tool-btn" title="テキスト入力">📝 文字</button>
+        <button id="panBtn" class="tool-btn" title="画面を移動">✋ 移動</button>
       </div>
 
       <div class="toolbar-group">
         <label class="tool-label">色</label>
         <input type="color" id="colorPicker" value="#1a1a1a">
-        <label class="tool-label">太さ</label>
+        <label class="tool-label" id="widthLabel">太さ</label>
         <input type="range" id="widthPicker" min="1" max="30" value="4">
         <span id="widthValue">4</span>
       </div>
 
+      <div class="toolbar-group zoom-group">
+        <button id="zoomOutBtn" class="tool-btn small" title="縮小">－</button>
+        <span id="zoomLevel">100%</span>
+        <button id="zoomInBtn" class="tool-btn small" title="拡大">＋</button>
+        <button id="fitBtn" class="tool-btn small" title="全体表示に戻す">⟳ 全体</button>
+        <button id="fullscreenBtn" class="tool-btn small" title="全画面表示">🔲 全画面</button>
+      </div>
+
       <div class="toolbar-group">
-        <button id="penBtn" class="tool-btn active">✏️ ペン</button>
-        <button id="eraserBtn" class="tool-btn">🧹 消しゴム</button>
         <button id="clearBtn" class="tool-btn danger">🗑️ 全消去</button>
       </div>
 
@@ -47,7 +60,7 @@
       </div>
     </header>
 
-    <main class="canvas-wrap">
+    <main class="canvas-wrap" id="canvasWrap">
       <canvas id="board"></canvas>
     </main>
   </div>
